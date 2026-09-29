@@ -1,0 +1,61 @@
+#include <iostream>
+#include <iomanip>
+#include <limits>
+#include <string>
+using namespace std;
+
+struct Grade {
+    float Nilai;
+    string huruf;
+    string sebutan;
+    float angka;
+};
+
+int main() {
+    // Tabel konversi, diurutkan dari nilai tertinggi ke terendah.
+    const Grade tabel[] = {
+        {81, "A",  "Sangat Istimewa",  4.0f},
+        {76, "A-", "Istimewa",         3.7f},
+        {72, "B+", "Lebih dari Baik",  3.3f},
+        {68, "B",  "Baik",             3.0f},
+        {64, "B-", "Cukup Baik",       2.7f},
+        {60, "C+", "Lebih dari Cukup", 2.3f},
+        {56, "C",  "Cukup",            2.0f},
+        {41, "D",  "Kurang",           1.0f},
+        {0,  "E",  "Gagal",            0.0f}
+    };
+    const int jumlahTabel = sizeof(tabel) / sizeof(tabel[0]);
+
+    char lagi = 'y';
+    while (lagi == 'y') {
+        float nilai;
+        cout << "Masukkan nilai (0-100):";
+
+        // Validasi: tolak input yang bukan angka
+        while (!(cin >> nilai)) {
+            cout << "Input tidak valid, masukkan angka: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        if (nilai < 0 || nilai >= 100) {
+            cout << "Nilai tidak valid! Harus di antara 0 dan 100.\n";
+        } else {
+            for (int i = 0; i < jumlahTabel; i++) {
+                if (nilai >= tabel[i].Nilai) {
+                    cout << fixed << setprecision(1);
+                    cout << "Huruf Mutu  : " << tabel[i].huruf << endl;
+                    cout << "Sebutan Mutu: " << tabel[i].sebutan << endl;
+                    cout << "Angka Mutu  : " << tabel[i].angka << endl;
+                    break;
+                }
+            }
+        }
+
+        cout << "\nHitung nilai lain? (y/n): ";
+        cin >> lagi;
+        cout << endl;
+    }
+
+    return 0;
+}
