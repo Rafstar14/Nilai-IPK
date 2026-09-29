@@ -24,4 +24,11 @@ Langkah-langkah
    git clone [https://github.com/Rafstar14/Nilai-IPK.git](https://github.com/Rafstar14/Nilai-IPK.git)
    cd Nilai-IPK
 
+Kompilasi kode program
+  ```bash
+  g++ code -o konversi_nilai
+```
+
+Jalankan Program
+```bash
   g++ code -o konversi_nilai
